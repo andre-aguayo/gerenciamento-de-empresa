@@ -19,17 +19,17 @@
                     </div>
 
                     <div class="card-body">
-                        @if (session('status'))
+                        @if (session('success') !== null)
                             <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        @if (session('error'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('error') }}
                             </div>
                         @endif
                         {{ __('Tabela de empresas') }}
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
 
                         @include('empresa.tabela.tabela-de-empresas',['empresas'=>$empresas])
 

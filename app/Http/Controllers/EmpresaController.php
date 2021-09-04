@@ -78,7 +78,7 @@ class EmpresaController extends Controller
      */
     public function delete(int $idEmpresa)
     {
-        if (Empresa::find($idEmpresa)->with('funcionarios')->delete()) {
+        if (Empresa::find($idEmpresa)->delete()) {
             return redirect('/')->with('success', 'Empresa removida com sucesso!');
         }
         return redirect('/')->with('error', 'Algo deu errado ao remover a empresa!');

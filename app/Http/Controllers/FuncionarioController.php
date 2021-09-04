@@ -19,9 +19,6 @@ class FuncionarioController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Cria o quadro de trabalho e o acesso ao usuario para o quado de trabalho
-     */
     public function create(FuncionarioRequest $request)
     {
         if (Funcionario::create([
@@ -59,15 +56,21 @@ class FuncionarioController extends Controller
         return redirect('/')->with('error', 'Algo deu errado ao remover o funcionario!');
     }
 
+    /**
+     * Busca informaçoes de um usuario especifico
+     */
     public function buscaFuncionario(int $idFuncionario)
     {
         return Funcionario::find($idFuncionario);
     }
 
+    /**
+     * Busca todos os funcionarios da empresa
+     */
     public function buscaFuncionariosDaEmrpesa($idEmpresa)
     {
         $funcionarios = DB::table('funcionarios')->where('empresa_id', $idEmpresa)->paginate(10);
-        
+
         return $funcionarios;
     }
 }
