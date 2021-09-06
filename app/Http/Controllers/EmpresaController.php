@@ -22,7 +22,7 @@ class EmpresaController extends Controller
     /**
      * Salva uma nova empresa
      */
-    public function create(EmpresaRequest $request)
+    public function store(EmpresaRequest $request)
     {
         $nomeLogotipo = $this->salvarLogotipo($request);
 
@@ -31,7 +31,7 @@ class EmpresaController extends Controller
             'email' => $request->email,
             'logotipo' => $nomeLogotipo
         ])) {
-            return redirect('/')->with('success', 'Cadastrado com sucesso!');
+            return redirect('/')->with('success', 'Empresa cadastrada com sucesso!');
         }
         return redirect('/')->with('error', 'Algo de errado ao cadastrar a empresa!');
     }
@@ -39,14 +39,14 @@ class EmpresaController extends Controller
     /**
      * Atualiza informacoes da empresa
      */
-    public function update(EmpresaRequest $request)
+    public function edit(EmpresaRequest $request)
     {
         $empresa = $this->criarEmpresa($request);
 
         if (Empresa::find($request->id)
             ->update($empresa)
         ) {
-            return redirect('/')->with('seccess', 'Atualizado com sucesso!');
+            return redirect('/')->with('success', 'Empresa atualizada com sucesso!');
         }
         return redirect('/')->with('error', 'Algo deu errado ao atualizar a empresa!');
     }
@@ -76,7 +76,7 @@ class EmpresaController extends Controller
     /**
      * Remove a empresa
      */
-    public function delete(int $idEmpresa)
+    public function destroy(int $idEmpresa)
     {
         if (Empresa::find($idEmpresa)->delete()) {
             return redirect('/')->with('success', 'Empresa removida com sucesso!');

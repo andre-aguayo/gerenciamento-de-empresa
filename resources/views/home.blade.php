@@ -19,12 +19,11 @@
                     </div>
 
                     <div class="card-body">
-                        @if (session('success') !== null)
+                        @if (session('success') != null)
                             <div class="alert alert-success" role="alert">
                                 {{ session('success') }}
                             </div>
-                        @endif
-                        @if (session('error'))
+                        @elseif (session('fail') != null)
                             <div class="alert alert-success" role="alert">
                                 {{ session('error') }}
                             </div>

@@ -27,12 +27,16 @@ class FuncionarioViewsController extends Controller
 
     /**
      * Mostra o formulario de alteracao dos dados da empresa
+     * Caso nao exista redireciona para a pagina inicial
      */
     public function editar(int $idFuncionario)
     {
         $funcionario = $this->buscaFuncionario($idFuncionario);
 
-        return view('/funcionario/formulario/formulario-funcionario', ['funcionario' => $funcionario]);
+        if ($funcionario !== NULL) {
+            return view('/funcionario/formulario/formulario-funcionario', ['funcionario' => $funcionario]);
+        }
+        return redirect('/')->with('error', 'Funcionario nao encontrado!');
     }
 
     private function buscaFuncionario(int $idFuncionario)
