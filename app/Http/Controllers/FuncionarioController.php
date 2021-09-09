@@ -28,9 +28,9 @@ class FuncionarioController extends Controller
             'email' => $request->email,
             'telefone' => $request->telefone
         ])) {
-            return redirect('/')->with('success', 'Cadastrado com sucesso!');
+            return redirect('/')->with('success', 'Funcionario cadastrado com sucesso!');
         }
-        return redirect('/')->with('error', 'Algo de errado ao cadastrar a empresa!');
+        return redirect('/')->with('error', 'Algo de errado ao cadastrar a o funcionario!');
     }
 
     public function update(FuncionarioRequest $request)
@@ -43,15 +43,15 @@ class FuncionarioController extends Controller
                 'telefone' => $request->telefone
             ])
         ) {
-            return redirect('/')->with('success', 'Cadastrado com sucesso!');
+            return redirect('/')->with('success', 'Informaçoes do funcionario atualizadas com sucesso!');
         }
-        return redirect('/')->with('error', 'Algo de errado ao cadastrar a empresa!');
+        return redirect('/')->with('error', 'Algo de errado ao atualizar as informaçoes do funcionario!');
     }
 
     public function delete(int $idFuncionario)
     {
         if (Funcionario::find($idFuncionario)->delete()) {
-            return redirect('/')->with('success', 'Funcionario removida com sucesso!');
+            return redirect('/')->with('success', 'Funcionario removido com sucesso!');
         }
         return redirect('/')->with('error', 'Algo deu errado ao remover o funcionario!');
     }

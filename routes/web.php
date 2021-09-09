@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return redirect('/login');
-});
+})->name('login');
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 /**
  * Grupo de rotas para gestao da empresa
@@ -22,22 +22,22 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::group(['prefix' => 'empresa'], function () {
 
     //Visualizar os funcionarios da empresa
-    Route::get('/visualizar/{nomeEmpresa}/{idEmpresa}', [EmpresaViewsController::class, 'index'])->name('home');
+    Route::get('fuionarios/{nomeEmpresa}/{idEmpresa}', [EmpresaViewsController::class, 'index'])->name('empresa.index');
 
     //Pagina de cadastro de nova empresa
-    Route::get('/cadastro', [EmpresaViewsController::class, 'cadastro'])->name('create_empresa');
+    Route::get('/cadastro', [EmpresaViewsController::class, 'create'])->name('empresa.create');
 
     //Salva a empresa 
-    Route::post('/salvar', [EmpresaController::class, 'create']);
+    Route::post('/salvar', [EmpresaController::class, 'store'])->name('empresa.store');
 
     //Pagina de ediçao de informaçoes da emrpesa
-    Route::get('/editar/{id}', [EmpresaViewsController::class, 'editar'])->name('update_empresa');
+    Route::get('/editar/{id}', [EmpresaViewsController::class, 'show'])->name('empresa.show');
 
     //Salva as alteraçoes da empresa
-    Route::post('/atualizar/{id}', [EmpresaController::class, 'update']);
+    Route::post('/atualizar/{id}', [EmpresaController::class, 'edit'])->name('empresa.edit');
 
     //Remove a empresa
-    Route::get('/remover/{id}', [EmpresaController::class, 'delete'])->name('delete_empresa');
+    Route::get('/remover/{id}', [EmpresaController::class, 'destroy'])->name('empresa.destroy');
 });
 
 /**
@@ -46,17 +46,17 @@ Route::group(['prefix' => 'empresa'], function () {
 Route::group(['prefix' => 'funcionario'], function () {
 
     //Pagina de formulario para cadastro de funcionario
-    Route::get('/cadastro/{empresa_id}', [FuncionarioViewsController::class, 'cadastro'])->name('create_funcionario');
+    Route::get('/cadastro/{empresa_id}', [FuncionarioViewsController::class, 'cadastro'])->name('funcionario.create');
 
     //Salva o funcionario 
-    Route::post('/salvar/{empresa_id}', [FuncionarioController::class, 'create']);
+    Route::post('/salvar/{empresa_id}', [FuncionarioController::class, 'create'])->name('funcionario.store');
 
     //Pagina de ediçao de informaçoes da emrpesa
-    Route::get('/editar/{id}', [FuncionarioViewsController::class, 'editar'])->name('update_funcionario');
+    Route::get('/editar/{id}', [FuncionarioViewsController::class, 'editar'])->name('funcionario.show');
 
     //Salva as alteraçoes da empresa
-    Route::post('/atualizar/{id}', [FuncionarioController::class, 'update']);
+    Route::post('/atualizar/{id}', [FuncionarioController::class, 'update'])->name('funcionario.edit');
 
     //Remove o usuario da empresa
-    Route::get('/remover/{id}', [FuncionarioController::class, 'delete'])->name('delete_funcionairo');
+    Route::get('/remover/{id}', [FuncionarioController::class, 'delete'])->name('funcionario.destroy');
 });

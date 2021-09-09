@@ -22,7 +22,7 @@ class HomeController extends Controller
     public function index()
     {
         $empresas = $this->buscaTodasEmpresas();
-        
+
         return view('home', ['empresas' => $empresas]);
     }
 

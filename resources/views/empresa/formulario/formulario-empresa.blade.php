@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        @if (Route::current()->getName() == 'update_empresa')
+                        @if (Route::current()->getName() == 'empresa.show')
                             <div class="row">
                                 <div class="col-md-3">{{ __('Atualizar empresa') }}
                                 </div>
@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="card-body">
-                        @if (Route::current()->getName() == 'update_empresa')
+                        @if (Route::current()->getName() == 'empresa.show')
                             <form method="POST" action="/empresa/atualizar/{{ $empresa->id }}"
                                 enctype="multipart/form-data">
                             @else
