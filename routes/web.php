@@ -46,10 +46,10 @@ Route::group(['prefix' => 'empresa'], function () {
 Route::group(['prefix' => 'funcionario'], function () {
 
     //Pagina de formulario para cadastro de funcionario
-    Route::get('/cadastro/{empresa_id}', [FuncionarioViewsController::class, 'cadastro'])->name('funcionario.create');
+    Route::get('/cadastro/{empresa_id}', [FuncionarioViewsController::class, 'create'])->name('funcionario.create');
 
     //Salva o funcionario 
-    Route::post('/salvar/{empresa_id}', [FuncionarioController::class, 'create'])->name('funcionario.store');
+    Route::post('/salvar/{empresa_id}', [FuncionarioController::class, 'store'])->name('funcionario.store');
 
     //Pagina de ediçao de informaçoes da emrpesa
     Route::get('/editar/{id}', [FuncionarioViewsController::class, 'editar'])->name('funcionario.show');
