@@ -20,9 +20,9 @@ class FuncionarioViewsController extends Controller
     /**
      * Mostra o formulario de cadasrto de empresa
      */
-    public function cadastro(int $idEmpresa)
+    public function create(int $idEmpresa)
     {
-        return view('/funcionario/formulario/formulario-funcionario', ['idEmpresa' => $idEmpresa]);
+        return view('vue-router', ['idEmpresa' => $idEmpresa]);
     }
 
     /**
@@ -34,7 +34,7 @@ class FuncionarioViewsController extends Controller
         $funcionario = $this->buscaFuncionario($idFuncionario);
 
         if ($funcionario !== NULL) {
-            return view('/funcionario/formulario/formulario-funcionario', ['funcionario' => $funcionario]);
+            return view('vue-router', ['funcionario' => $funcionario]);
         }
         return redirect('/')->with('error', 'Funcionario nao encontrado!');
     }

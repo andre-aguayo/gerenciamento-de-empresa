@@ -19,7 +19,7 @@ class FuncionarioController extends Controller
         $this->middleware('auth');
     }
 
-    public function create(FuncionarioRequest $request)
+    public function store(FuncionarioRequest $request)
     {
         if (Funcionario::create([
             'nome' => $request->nome,

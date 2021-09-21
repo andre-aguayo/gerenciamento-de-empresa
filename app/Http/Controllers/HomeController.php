@@ -23,7 +23,7 @@ class HomeController extends Controller
     {
         $empresas = $this->buscaTodasEmpresas();
 
-        return view('home', ['empresas' => $empresas]);
+        return view('vue-router', ['values' => $empresas]);
     }
 
     /**

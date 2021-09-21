@@ -14,6 +14,9 @@ Route::get('/login', function () {
 
 Auth::routes();
 
+/**
+ * Rota para a pagina inicial
+ */
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 /**

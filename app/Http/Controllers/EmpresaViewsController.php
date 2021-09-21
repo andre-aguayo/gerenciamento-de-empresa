@@ -23,14 +23,14 @@ class EmpresaViewsController extends Controller
     {
         //verifica se a empresa existe
         $empresa = $this->buscaEmpresa($idEmpresa);
-        if ($empresa === NULL) {
-            return redirect('/')->with('error', 'Empresa nao encontrada!');
+        if ($empresa !== NULL) {
+            $empresaController = new EmpresaController();
+            $funcionarios = $empresaController->buscaFuncionarios($idEmpresa);
+
+            return view('vue-router', ['funcionarios' => $funcionarios, 'idEmpresa' => $idEmpresa]);
         }
 
-        $empresaController = new EmpresaController();
-        $funcionarios = $empresaController->buscaFuncionarios($idEmpresa);
-
-        return view('/empresa/index', ['funcionarios' => $funcionarios, 'idEmpresa' => $idEmpresa]);
+        return redirect('/')->with('error', 'Empresa nao encontrada!');
     }
 
     /**
@@ -38,7 +38,7 @@ class EmpresaViewsController extends Controller
      */
     public function create()
     {
-        return view('/empresa/formulario/formulario-empresa');
+        return view('vue-router');
     }
 
     /**
@@ -52,7 +52,7 @@ class EmpresaViewsController extends Controller
         if ($empresa === null) {
             return   redirect('/')->with('error', 'Empresa nao encontrada!');
         }
-        return view('/empresa/formulario/formulario-empresa', ['empresa' => $empresa]);
+        return view('vue-router', ['empresa' => $empresa]);
     }
 
     /**
